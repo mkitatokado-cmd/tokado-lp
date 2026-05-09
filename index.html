@@ -54,8 +54,8 @@ a{text-decoration:none;color:inherit;}
 /* ─── HERO ─── */
 .hero{min-height:100vh;position:relative;display:flex;align-items:stretch;padding-top:64px;overflow:hidden;}
 .hero__bg{position:absolute;inset:0;z-index:0;}
-.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center;}
-.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(245,240,250,.55) 0%,rgba(245,240,250,.25) 50%,transparent 100%);}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(0.15) brightness(1.55) contrast(0.9);}
+.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(255,252,255,.72) 0%,rgba(255,252,255,.38) 52%,rgba(255,252,255,.08) 100%);}
 .hero__left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:60px 0 60px 8%;width:50%;}
 .hero__brand{margin-bottom:52px;}
 .hero__brand-name{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.22em;color:var(--text);display:block;margin-bottom:5px;}
@@ -66,7 +66,7 @@ a{text-decoration:none;color:inherit;}
 .btn-primary:hover{opacity:.82;}
 .btn-primary svg{width:14px;height:8px;stroke:currentColor;fill:none;}
 .hero__right{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;}
-.hero__ring-img{width:110%;max-width:680px;object-fit:contain;mix-blend-mode:multiply;transform:translateX(4%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 15%,black 35%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 15%,black 35%);}
+.hero__ring-img{width:115%;max-width:720px;object-fit:contain;mix-blend-mode:multiply;transform:translateX(2%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 28%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 28%);}
 .hero__vertical{position:absolute;top:72px;right:5%;z-index:3;writing-mode:vertical-rl;text-orientation:mixed;font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.2;color:var(--text);letter-spacing:.16em;}
 
 /* ─── TAGLINE BAND ─── */
@@ -221,8 +221,8 @@ a{text-decoration:none;color:inherit;}
       <span class="hero__brand-sub">北真弓 | Jewelry Producer<br>Diamond Jewelry</span>
     </div>
     <h1 class="hero__main-title">
-      ４０年の信頼と、<br>
-      １００万本の実績。
+      40年の信頼と、<br>
+      100万本の実績。
     </h1>
     <p class="hero__copy">
       ジュエリーを知り尽くしたプロが、<br>
