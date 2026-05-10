@@ -764,36 +764,53 @@
     });
 
 
-    // Collection Slider - auto-play right to left
+    // Collection Slider - infinite loop right to left
     (function() {
       var slider = document.getElementById('colSlider');
       var dots = document.querySelectorAll('.col-dot');
       if (!slider) return;
 
-      var total = slider.children.length;
-      var current = 0;
-      var autoTimer;
+      var real = slider.children.length;
 
-      function goTo(idx) {
-        current = (idx + total) % total;
-        slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+      // Clone all slides and append for infinite effect
+      Array.from(slider.children).forEach(function(slide) {
+        slider.appendChild(slide.cloneNode(true));
+      });
+
+      var current = 0;
+      var isTransitioning = false;
+
+      function setPos(idx, animate) {
+        slider.style.transition = animate ? 'transform 0.7s cubic-bezier(0.77, 0, 0.175, 1)' : 'none';
+        slider.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        // Update dots based on real index
+        var realIdx = idx % real;
         dots.forEach(function(d, i) {
-          d.classList.toggle('active', i === current);
+          d.classList.toggle('active', i === realIdx);
         });
       }
 
-      function next() { goTo(current + 1); }
+      // After transition ends, silently jump back if in clone zone
+      slider.addEventListener('transitionend', function() {
+        isTransitioning = false;
+        if (current >= real) {
+          current = current - real;
+          setPos(current, false);
+        }
+      });
 
-      function startAuto() {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(next, 3000);
+      function next() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        current++;
+        setPos(current, true);
       }
 
       // Dot clicks
       dots.forEach(function(dot) {
         dot.addEventListener('click', function() {
-          goTo(parseInt(this.dataset.idx));
-          startAuto();
+          current = parseInt(this.dataset.idx);
+          setPos(current, true);
         });
       });
 
@@ -801,15 +818,14 @@
       var touchStartX = 0;
       slider.addEventListener('touchstart', function(e) {
         touchStartX = e.touches[0].clientX;
-        clearInterval(autoTimer);
       }, { passive: true });
       slider.addEventListener('touchend', function(e) {
         var diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) diff > 0 ? next() : goTo(current - 1);
-        startAuto();
+        if (Math.abs(diff) > 40) next();
       });
 
-      startAuto();
+      // Auto-play
+      setInterval(next, 3000);
     })();
 
     // To top button
