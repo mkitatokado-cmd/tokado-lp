@@ -39,12 +39,12 @@
     @keyframes fadeInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
-    .anime { opacity: 0; transition: opacity 0.3s; }
-    .animated-fadeInDown { animation: fadeInDown 1.5s forwards; }
-    .animated-fadeIn { animation: fadeIn 1.5s forwards; }
-    .animated-fadeInUp { animation: fadeInUp 1.5s forwards; }
-    .animated-fadeInRight { animation: fadeInRight 1.5s forwards; }
-    .animated-fadeInLeft { animation: fadeInLeft 1.5s forwards; }
+    /* .anime: no default opacity:0 - content always visible */
+    .animated-fadeInDown { animation: fadeInDown 1s ease-out forwards; }
+    .animated-fadeIn { animation: fadeIn 1s ease-out forwards; }
+    .animated-fadeInUp { animation: fadeInUp 1s ease-out forwards; }
+    .animated-fadeInRight { animation: fadeInRight 1s ease-out forwards; }
+    .animated-fadeInLeft { animation: fadeInLeft 1s ease-out forwards; }
     .delay-1 { animation-delay: 0.25s; }
     .delay-2 { animation-delay: 0.5s; }
     .delay-3 { animation-delay: 0.75s; }
@@ -625,81 +625,68 @@
   </div>
 
   <script>
-    // Scroll animation with IntersectionObserver
-    const animeEls = document.querySelectorAll('.anime');
-    const observer = new IntersectionObserver(function(entries) {{
-      entries.forEach(function(entry) {{
-        if (entry.isIntersecting) {{
-          var el = entry.target;
-          // Determine animation type from parent or data attribute
+    // Scroll animations - elements always visible, animations are enhancement only
+    var animated = new Set();
+    function checkAnimations() {
+      document.querySelectorAll('.anime').forEach(function(el) {
+        if (animated.has(el)) return;
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92) {
           var anim = el.dataset.anim || 'fadeInUp';
           el.classList.add('animated-' + anim);
-          observer.unobserve(el);
-        }}
-      }});
-    }}, {{ threshold: 0.15 }});
+          animated.add(el);
+        }
+      });
+    }
 
     // Assign animation types
-    document.querySelectorAll('.top-mv-ttl, .top-mv-img-01, .top-mv-img-02, .top-mv-img-03').forEach(function(el) {{
-      el.dataset.anim = 'fadeInUp';
-    }});
-    document.querySelectorAll('.top-mv-copy').forEach(function(el) {{
-      el.dataset.anim = 'fadeIn';
-    }});
-    document.querySelectorAll('.section-ttl').forEach(function(el) {{
-      el.dataset.anim = 'fadeInDown';
-    }});
-    document.querySelectorAll('.top-price-img-01').forEach(function(el) {{
-      el.dataset.anim = 'fadeInRight';
-    }});
-    document.querySelectorAll('.top-price-img-02').forEach(function(el) {{
-      el.dataset.anim = 'fadeInLeft';
-    }});
+    document.querySelectorAll('.top-mv-ttl').forEach(function(el){ el.dataset.anim = 'fadeInDown'; });
+    document.querySelectorAll('.top-mv-copy').forEach(function(el){ el.dataset.anim = 'fadeIn'; });
+    document.querySelectorAll('.section-ttl').forEach(function(el){ el.dataset.anim = 'fadeInDown'; });
+    document.querySelectorAll('.top-price-img-01').forEach(function(el){ el.dataset.anim = 'fadeInRight'; });
+    document.querySelectorAll('.top-price-img-02').forEach(function(el){ el.dataset.anim = 'fadeInLeft'; });
 
-    animeEls.forEach(function(el) {{
-      if (!el.dataset.anim) el.dataset.anim = 'fadeInUp';
-      observer.observe(el);
-    }});
+    window.addEventListener('scroll', checkAnimations);
+    document.addEventListener('DOMContentLoaded', checkAnimations);
+    window.addEventListener('load', checkAnimations);
+    setTimeout(checkAnimations, 100);
 
     // FAQ accordion
-    document.querySelectorAll('.top-faq-q').forEach(function(q) {{
-      q.addEventListener('click', function() {{
+    document.querySelectorAll('.top-faq-q').forEach(function(q) {
+      q.addEventListener('click', function() {
         var item = this.closest('.top-faq-item');
         var answer = item.querySelector('.top-faq-a');
         var isOpen = item.classList.contains('open');
-        document.querySelectorAll('.top-faq-item').forEach(function(i) {{
+        document.querySelectorAll('.top-faq-item').forEach(function(i) {
           i.classList.remove('open');
           i.querySelector('.top-faq-a').classList.remove('open');
-        }});
-        if (!isOpen) {{
+        });
+        if (!isOpen) {
           item.classList.add('open');
           answer.classList.add('open');
-        }}
-      }});
-    }});
+        }
+      });
+    });
 
     // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {{
-      a.addEventListener('click', function(e) {{
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
         var href = this.getAttribute('href');
         if (href === '#') return;
         var target = document.querySelector(href);
-        if (target) {{
+        if (target) {
           e.preventDefault();
-          window.scrollTo({{ top: target.offsetTop - 60, behavior: 'smooth' }});
-        }}
-      }});
-    }});
+          window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+        }
+      });
+    });
 
     // To top button
     var totop = document.getElementById('totop');
-    window.addEventListener('scroll', function() {{
-      if (window.scrollY > 400) {{
-        totop.classList.add('visible');
-      }} else {{
-        totop.classList.remove('visible');
-      }}
-    }});
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) totop.classList.add('visible');
+      else totop.classList.remove('visible');
+    });
   </script>
 
 </body>
