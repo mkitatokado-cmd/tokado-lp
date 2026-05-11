@@ -446,6 +446,167 @@
       letter-spacing: 0.3em;
       color: #9e9e9e;
     }
+  
+    /* ===== RESPONSIVE / MOBILE ===== */
+    .hamburger { display: none; }
+    .sp-nav-overlay { display: none; }
+
+    @media (max-width: 767px) {
+      /* --- Wrap --- */
+      .wrap { width: 100%; }
+
+      /* --- Header --- */
+      .header { min-width: 0; }
+      .header-contents { padding: 0 15px; }
+      .header-contents-logo { width: auto; padding: 0; }
+      .header-contents-logo a { font-size: 1.2rem; letter-spacing: 0.15em; }
+      .header-contents-nav { display: none; }
+      .header-contents-link,
+      .header-contents-link-2 { display: none; }
+
+      /* Hamburger button */
+      .hamburger {
+        display: flex; flex-direction: column; justify-content: center;
+        align-items: center; gap: 5px;
+        width: 40px; height: 40px; margin-left: auto; padding: 0;
+        background: none; border: none; cursor: pointer;
+      }
+      .hamburger span {
+        display: block; width: 22px; height: 1.5px;
+        background-color: #7a7a78; transition: 0.3s;
+      }
+
+      /* SP nav overlay */
+      .sp-nav-overlay {
+        display: none; position: fixed; inset: 0; z-index: 100;
+        background-color: #eae9e7; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 60px 40px 40px;
+      }
+      .sp-nav-overlay.open { display: flex; }
+      .sp-nav-close {
+        position: absolute; top: 18px; right: 20px;
+        font-size: 2.2rem; color: #7a7a78; background: none;
+        border: none; cursor: pointer; font-weight: 100; line-height: 1;
+      }
+      .sp-nav {
+        display: flex; flex-direction: column; align-items: center; gap: 28px;
+      }
+      .sp-nav a {
+        font-family: "Josefin Sans", sans-serif; font-size: 1.8rem;
+        letter-spacing: 0.3em; color: #7a7a78; text-decoration: none;
+        font-weight: 300; border-bottom: 1px solid transparent;
+        padding-bottom: 2px; transition: 0.2s;
+      }
+      .sp-nav-reserve {
+        margin-top: 16px;
+        background-color: #908379 !important;
+        color: #fff !important;
+        padding: 12px 40px !important;
+        letter-spacing: 0.3em;
+      }
+
+      /* --- Body --- */
+      body { padding-top: 60px; }
+
+      /* --- Section common --- */
+      .section-ttl { font-size: 2.2rem; margin-bottom: 36px; }
+
+      /* --- HERO / MV --- */
+      .top-mv { padding: 50px 0 40px; }
+      .top-mv .wrap { padding: 0 15px; }
+      .top-mv-ttl {
+        position: static; font-size: 2.4rem; margin-bottom: 30px;
+        letter-spacing: 0.05em;
+      }
+      .top-mv-ttl-txt:nth-child(2) { margin-left: 0; }
+      .top-mv-ttl-txt:nth-child(3) { margin-left: 0; }
+      .top-mv-img-01 img { width: 90%; max-width: 340px; }
+      .top-mv-img-02 {
+        position: static; margin-top: 16px; text-align: center;
+      }
+      .top-mv-img-02 img { width: 60%; max-width: 220px; }
+      .top-mv-img-03 {
+        position: static; margin-top: 12px; text-align: center;
+      }
+      .top-mv-img-03 img { width: 58%; max-width: 210px; }
+      .top-mv-copy {
+        font-size: 3.8rem; margin-top: 24px; line-height: 1;
+      }
+      .top-mv-copy-txt:nth-child(2) { margin-right: 0; }
+      .top-mv-copy-txt:nth-child(3) { margin-right: 0; }
+      .top-mv-copy-txt:nth-child(4) { margin-right: 0; }
+      .top-mv-txt { margin: 30px 0 0; letter-spacing: 0.1em; font-size: 1.3rem; }
+
+      /* --- CONCERN --- */
+      .top-news-contents { padding: 60px 0; }
+      .top-news-contents-list { padding: 0 5px; }
+
+      /* --- FUTURE (news) --- */
+
+      /* --- DIAMOND --- */
+      .top-price-contents { padding: 60px 0; }
+      .top-price-img-01 {
+        position: static; text-align: center; margin-bottom: 30px;
+      }
+      .top-price-img-01 img { width: 65%; max-width: 280px; }
+      .top-price-img-02 {
+        position: static; text-align: center; margin: 20px auto 0; display: block;
+      }
+      .top-price-img-02 img { width: 55%; max-width: 220px; }
+      .top-price-copy {
+        font-size: 3.5rem; margin: 0 auto 20px;
+      }
+      .top-price-copy-txt:nth-child(1) { margin-right: 0; }
+      .top-price-copy-txt:nth-child(3) { margin-right: 0; }
+      .top-price-copy-txt:nth-child(4) { margin-left: 0; }
+      .top-price-txt { margin: 20px 0 30px; font-size: 1.3rem; text-align: center; }
+      .top-price-detail { margin: 0; }
+
+      /* --- ABOUT --- */
+      .top-staff-contents { padding: 60px 0; }
+      .top-staff-contents-list-item > div[style] {
+        flex-direction: column !important; gap: 30px !important;
+        align-items: center !important; text-align: center;
+      }
+      .top-staff-contents-list-item-img { width: 220px; }
+      .top-staff-contents-list-item-txt {
+        font-size: 3rem; text-align: center;
+      }
+      .top-staff-contents-list-item-body { text-align: left; }
+
+      /* --- LIFESTYLE --- */
+      .lifestyle { padding: 60px 0 40px; }
+      .lifestyle-slider-wrap { max-width: 100%; }
+      .lifestyle-slide img { max-height: 480px; }
+
+      /* --- COLLECTION --- */
+      .top-design-contents { padding: 60px 0; }
+      .top-design-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+      .col-slide { padding: 0 10px 30px; }
+      .col-slide__img { max-width: 100%; }
+      .col-slide__name { font-size: 1.6rem; }
+
+      /* --- FAQ --- */
+      .top-faq-contents { padding: 60px 0; }
+      .top-faq-list { padding: 0 5px; }
+
+      /* --- CTA --- */
+      .top-info-contents { padding: 60px 0; }
+      .top-info-contents-copy { font-size: 3rem; }
+      .top-info-contents-txt { font-size: 1.4rem; letter-spacing: 0.1em; padding: 0 10px; }
+      .top-info-contents-btn a { padding: 14px 40px; font-size: 1.4rem; }
+      .top-info-contents-list { flex-direction: column; gap: 16px; }
+      .top-info-contents-list-item { margin: 0; }
+
+      /* --- Footer --- */
+      .footer { margin-top: 20px; }
+      .footer-copy { font-size: 0.9rem; letter-spacing: 0.1em; }
+
+      /* --- Totop --- */
+      .totop { right: 12px; bottom: 20px; }
+      .totop a { width: 38px; height: 38px; font-size: 1.6rem; }
+    }
   </style>
 </head>
 <body>
@@ -456,17 +617,32 @@
       <div class="header-contents-logo">
         <a href="#">TOKADO<br>JEWELRY</a>
       </div>
-      <nav class="header-contents-nav">
-        <li><a href="#concern">concern</a></li>
-        <li><a href="#diamond">diamond</a></li>
-        <li><a href="#about">about</a></li>
-        <li><a href="#collection">collection</a></li>
-        <li><a href="#faq">faq</a></li>
+      <nav class="header-contents-nav" id="headerNav">
+        <li><a href="#concern" class="sp-nav-link">concern</a></li>
+        <li><a href="#diamond" class="sp-nav-link">diamond</a></li>
+        <li><a href="#about" class="sp-nav-link">about</a></li>
+        <li><a href="#collection" class="sp-nav-link">collection</a></li>
+        <li><a href="#faq" class="sp-nav-link">faq</a></li>
       </nav>
       <a href="https://www.instagram.com/tokado_jewelry?igsh=N3Rldms5czdoNDJi&utm_source=qr" target="_blank" class="header-contents-link-2">Instagram</a>
       <a href="https://www.tokado.jp/" target="_blank" class="header-contents-link">RESERVE</a>
+      <button class="hamburger" id="hamburger" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+  <div class="sp-nav-overlay" id="spNavOverlay">
+    <button class="sp-nav-close" id="spNavClose">✕</button>
+    <nav class="sp-nav">
+      <a href="#concern" class="sp-nav-link">CONCERN</a>
+      <a href="#diamond" class="sp-nav-link">DIAMOND</a>
+      <a href="#about" class="sp-nav-link">ABOUT</a>
+      <a href="#collection" class="sp-nav-link">COLLECTION</a>
+      <a href="#faq" class="sp-nav-link">FAQ</a>
+      <a href="https://www.instagram.com/tokado_jewelry?igsh=N3Rldms5czdoNDJi&utm_source=qr" target="_blank" class="sp-nav-link">INSTAGRAM</a>
+      <a href="https://www.tokado.jp/" target="_blank" class="sp-nav-link sp-nav-reserve">RESERVE</a>
+    </nav>
+  </div>
 
   <!-- ===== MV / HERO ===== -->
   <section class="top-mv">
@@ -968,7 +1144,22 @@
       if (window.scrollY > 400) totop.classList.add('visible');
       else totop.classList.remove('visible');
     });
-  </script>
+  
+  // ===== HAMBURGER MENU =====
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var overlay = document.getElementById('spNavOverlay');
+    var closeBtn = document.getElementById('spNavClose');
+    var spLinks = document.querySelectorAll('.sp-nav-link');
+    function openMenu() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    if (hamburger) hamburger.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    spLinks.forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+  })();
+</script>
 
 </body>
 </html>
